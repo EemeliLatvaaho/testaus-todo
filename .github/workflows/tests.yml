@@ -46,7 +46,7 @@ jobs:
         run: npm run test:e2e
 
       - name: Upload Cypress artifacts
-        if: failure()
+        if: failure() && hashFiles('server.log', 'cypress/screenshots/**', 'cypress/videos/**') != ''
         uses: actions/upload-artifact@v4
         with:
           name: cypress-artifacts
